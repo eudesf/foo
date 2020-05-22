@@ -15,12 +15,19 @@
             font-weight: bold;
             color: blue;
         }
+        #addressInput {
+            width: 100%;
+        }
     </style>
 </head>
 <body>
     <h1>Exemplo de Requisição AJAX via XMLHttpRequest</h1>
     
     <h2>Requisição com XMLHttpRequest</h2>
+
+    <p>Endereço para Teste:</p>
+    <input type="text" id="addressInput" value="https://raw.githubusercontent.com/eudesf/foo/master/ajax_sample/foo.json"/></p>
+    
     <button onclick="xhrRequest()">Carregar</button>
     
     <p id="result"></p>
@@ -47,9 +54,11 @@
                 document.getElementById("result").textContent = "Ocorreu um erro ao tentar processar a requisição.";
             })
             
-            xhr.open("GET", "https://raw.githubusercontent.com/eudesf/foo/master/ajax_sample/foo.json");
+            var address = document.getElementById("addressInput").value;
+            xhr.open('GET', address);
 
             document.getElementById("result").textContent = 'Carregando...';
+            document.getElementById("descriptionValue").textContent = '?';
 
             xhr.send();
         }

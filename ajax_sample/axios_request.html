@@ -15,12 +15,19 @@
             font-weight: bold;
             color: blue;
         }
+        #addressInput {
+            width: 100%;
+        }
     </style>
 </head>
 <body>
     <h1>Exemplo de Requisição AJAX</h1>
     
     <h2>Requisição com Axios</h2>
+
+    <p>Endereço para Teste: </p>
+    <input type="text" id="addressInput" value="https://raw.githubusercontent.com/eudesf/foo/master/ajax_sample/foo.json"/></p>
+
     <button onclick="axiosRequest()">Carregar</button>
 
     <p id="result"></p>
@@ -31,8 +38,12 @@
     <script>
 
         function axiosRequest() {
+            var address = document.getElementById("addressInput").value;
+
             document.getElementById("result").textContent = 'Carregando...';
-            axios.get("https://raw.githubusercontent.com/eudesf/foo/master/ajax_sample/foo.json")
+            document.getElementById("descriptionValue").textContent = '?';
+            
+            axios.get(address)
                 .then(function(response) {
                     document.getElementById("result").textContent = JSON.stringify(response.data);
                     document.getElementById("descriptionValue").textContent = response.data.description;
