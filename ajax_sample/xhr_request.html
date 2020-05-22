@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Requisição AJAX</title>
+    <style>
+        #result {
+            background-color: silver;
+            font-weight: bold;
+            font-family: "Courier New";
+        }
+        #descriptionValue {
+            font-style: italic;
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exemplo de Requisição AJAX via XMLHttpRequest</h1>
+    
+    <h2>Requisição com XMLHttpRequest</h2>
+    <button onclick="xhrRequest()">Carregar</button>
+    
+    <p id="result"></p>
+    
+    <p>description: <span id="descriptionValue">?</span></p>
+
+    <script>
+
+        function xhrRequest() {
+            var xhr = new XMLHttpRequest();
+            
+            xhr.addEventListener("load", function() {
+                if (xhr.status === 200) {
+                    var jsonObject = JSON.parse(xhr.responseText);
+
+                    document.getElementById("result").textContent = xhr.responseText;
+                    document.getElementById("descriptionValue").textContent = jsonObject.description;
+                } else {
+                    document.getElementById("result").textContent = 'Error Code: ' + xhr.status + ' - ' + xhr.statusText;
+                }
+            });
+
+            xhr.addEventListener("error", function(error) {
+                document.getElementById("result").textContent = "Ocorreu um erro ao tentar processar a requisição.";
+            })
+            
+            xhr.open("GET", "https://raw.githubusercontent.com/eudesf/foo/mater/ajax_sample/foo.json");
+
+            document.getElementById("result").textContent = 'Carregando...';
+
+            xhr.send();
+        }
+        
+    </script>
+</body>
+</html>

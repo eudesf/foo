@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Requisição AJAX via Axios</title>
+    <style>
+        #result {
+            background-color: silver;
+            font-weight: bold;
+            font-family: "Courier New";
+        }
+        #descriptionValue {
+            font-style: italic;
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exemplo de Requisição AJAX</h1>
+    
+    <h2>Requisição com Axios</h2>
+    <button onclick="axiosRequest()">Carregar</button>
+
+    <p id="result"></p>
+
+    <p>description: <span id="descriptionValue">?</span></p>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
+    <script>
+
+        function axiosRequest() {
+            document.getElementById("result").textContent = 'Carregando...';
+            axios.get("https://raw.githubusercontent.com/eudesf/foo/maser/ajax_sample/foo.json")
+                .then(function(response) {
+                    document.getElementById("result").textContent = JSON.stringify(response.data);
+                    document.getElementById("descriptionValue").textContent = response.data.description;
+                }).catch(function(error) {
+                    document.getElementById("result").textContent = error;
+                });
+        }
+        
+    </script>
+</body>
+</html>
