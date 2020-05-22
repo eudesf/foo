@@ -32,7 +32,7 @@
 
         function axiosRequest() {
             document.getElementById("result").textContent = 'Carregando...';
-            axios.get("https://raw.githubusercontent.com/eudesf/foo/maser/ajax_sample/foo.json")
+            axios.get("https://raw.githubusercontent.com/eudesf/foo/master/ajax_sample/foo.json")
                 .then(function(response) {
                     document.getElementById("result").textContent = JSON.stringify(response.data);
                     document.getElementById("descriptionValue").textContent = response.data.description;
